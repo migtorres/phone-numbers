@@ -1,11 +1,12 @@
+require 'byebug'
+
 class PrefixCounter
 	attr_accessor :numbers
 	def self.results(numbers)
 		@prefix_count = {}
 		numbers.each do |number|
 			number = extra_characters(number)
-      next unless number
-			next unless number.length == 3 || (number.length >= 7 && number.length <= 12)
+      next unless length_condition(number) && check_just_digits(number)
       prefix = prefix(number)
 			sum_values(prefix)
 		end
@@ -32,6 +33,14 @@ class PrefixCounter
 	def self.remove_double_zero(number)
 		number[2..-1]
 	end
+
+  def self.length_condition(number)
+    number.length == 3 || (number.length >= 7 && number.length <= 12) if number
+  end
+
+  def self.check_just_digits(number)
+    number.scan(/\D/).empty?
+  end
 
 	def self.prefix(number)
 		number[0..2]

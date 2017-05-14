@@ -20,4 +20,10 @@ describe 'prefix_counter' do
 
     expect(PrefixCounter.results(input)).to eq({ '351' => 1 })
   end
+
+  it 'does not count numbers with letters' do
+    input = ['+351', '00351ABCD34567']
+
+    expect(PrefixCounter.results(input)).to eq({ '351' => 1 })
+  end
 end
