@@ -19,6 +19,8 @@ class PrefixCounter
 			remove_plus(number)
 		elsif number[0..1] == '00'
 			remove_double_zero(number)
+    else
+      number
     end
 	end
 

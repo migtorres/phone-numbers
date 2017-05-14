@@ -38,4 +38,10 @@ describe 'prefix_counter' do
 
     expect(PrefixCounter.results(input)).to eq({ '351' => 2 })
   end
+
+  it 'accepts numbers without + or 00 sign' do
+    input = ['+351', '351123456789']
+
+    expect(PrefixCounter.results(input)).to eq({ '351' => 2 })
+  end
 end
