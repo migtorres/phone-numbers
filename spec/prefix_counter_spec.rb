@@ -26,4 +26,16 @@ describe 'prefix_counter' do
 
     expect(PrefixCounter.results(input)).to eq({ '351' => 1 })
   end
+
+  it 'does not count spaces between + and other numbers' do
+    input = ['+351', '+ 351123456']
+
+    expect(PrefixCounter.results(input)).to eq({ '351' => 1 })
+  end
+
+   it 'accepts spaces between numbers' do
+    input = ['+351', '+351 123456789']
+
+    expect(PrefixCounter.results(input)).to eq({ '351' => 2 })
+  end
 end
