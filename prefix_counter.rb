@@ -4,20 +4,20 @@ class PrefixCounter
 		@prefix_count = {}
 		numbers.each do |number|
 			number = extra_characters(number)
-			prefix = prefix(number)
+      next unless number
+			next unless number.length == 3 || (number.length >= 7 && number.length <= 12)
+      prefix = prefix(number)
 			sum_values(prefix)
 		end
 		@prefix_count
 	end
 
 	def self.extra_characters(number)
-		if number[0] == '+'
+		if number[0] == '+' && number[1..2] != '00'
 			remove_plus(number)
 		elsif number[0..1] == '00'
 			remove_double_zero(number)
-		else
-			number
-		end
+    end
 	end
 
 	def self.sum_values(prefix)
