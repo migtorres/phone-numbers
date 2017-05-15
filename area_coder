@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'byebug'
+require './prefix_counter'
+
+AREA_CODES = 'area_codes.txt'.freeze
+
+ARGV.each do |file|
+  numbers = File.readlines(file).each {|l| l.chomp!}
+  area_codes = File.readlines(AREA_CODES).each {|l| l.chomp!}
+  results = PrefixCounter.results(numbers, area_codes)
+  results.each{ |k,v| puts "#{k}: #{v}"}
+end
