@@ -1,17 +1,17 @@
 require 'byebug'
 # Counts prefixes from a given array of numbers and
 # a given array of existing prefixes
-class PrefixCounter
+module PrefixCounter
   attr_accessor :numbers
   def self.results(numbers, prefix_list)
     @prefix_count = {}
     numbers.each do |number|
       number = extra_characters(number)
       number = number.gsub(/\s+/, '') if number
-      next unless length_condition(number) && check_just_digits(number)
+      next unless length_condition(number) && digits_condition(number)
       match_prefixes(number, prefix_list)
     end
-    @prefix_count
+    @prefix_count.sort.to_h
   end
 
   def self.extra_characters(number)
@@ -36,7 +36,7 @@ class PrefixCounter
     number.length == 3 || (number.length >= 7 && number.length <= 12) if number
   end
 
-  def self.check_just_digits(number)
+  def self.digits_condition(number)
     number.scan(/\D/).empty?
   end
 
