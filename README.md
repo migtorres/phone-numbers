@@ -24,7 +24,7 @@ To run the software you will need a file with phone numbers. As an example you c
 The command to use is the following (you can replace the example file with any other):
 
 ```
-./area_coder example.txt
+./area_coder example_file.txt
 ```
 
 This will use as a matcher [area_codes.txt](area_codes.txt). If you have a new area_codes list you can replace it.
