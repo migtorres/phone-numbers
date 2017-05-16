@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'byebug'
 # Counts prefixes from a given array of numbers and
 # a given array of existing prefixes
@@ -15,7 +17,7 @@ module PrefixCounter
     @numbers.each do |number|
       contact = Contact.new number
       contact.extra_characters
-      contact.remove_spaces if contact
+      contact.remove_spaces
       next unless contact.length_condition && contact.digits_condition
       match_prefixes(contact.number)
     end
@@ -61,8 +63,9 @@ module PrefixCounter
     end
 
     # removes spaces from numbers
+    # won't break on Ruby 3 where string literals are frozen
     def remove_spaces
-      @number.gsub!(/\s+/, '')
+      @number = @number.gsub(/\s+/, '')
     end
 
     # checks if number has 3 digits or between 7 and 12 digits

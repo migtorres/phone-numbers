@@ -1,12 +1,14 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require 'byebug'
 require './prefix_counter'
 
-AREA_CODES = 'area_codes.txt'.freeze
+AREA_CODES = 'area_codes.txt'
 
 ARGV.each do |file|
-  numbers = File.readlines(file).each {|l| l.chomp!}
-  area_codes = File.readlines(AREA_CODES).each {|l| l.chomp!}
+  numbers = File.readlines(file).map(&:chomp)
+  area_codes = File.readlines(AREA_CODES).map(&:chomp)
   results = PrefixCounter.results(numbers, area_codes)
-  results.each{ |k,v| puts "#{k}: #{v}"}
+  results.each { |k, v| puts "#{k}: #{v}" }
 end

@@ -1,14 +1,15 @@
+# frozen_string_literal: true
 
 require 'spec_helper'
 require_relative '../prefix_counter'
 
 describe 'prefix_counter' do
-  prefix_list = %w(351 994 21 352 353 354)
+  prefix_list = %w[351 994 21 352 353 354]
   it 'should accept and count 3 regular numbers' do
     input = ['+351912345678', '00351961234567', '00994123456789']
 
-    expect(PrefixCounter.results(input, prefix_list)).to eq({ '351' => 2,
-                                                              '994' => 1 })
+    expect(PrefixCounter.results(input, prefix_list)).to eq('351' => 2,
+                                                            '994' => 1)
   end
 
   it 'should just count numbers with 3 or between 7 and 12 digits' do
