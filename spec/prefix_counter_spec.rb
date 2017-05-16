@@ -7,11 +7,13 @@ describe 'prefix_counter' do
   it 'should accept and count 3 regular numbers' do
     input = ['+351912345678', '00351961234567', '00994123456789']
 
-    expect(PrefixCounter.results(input, prefix_list)).to eq({ '351' => 2, '994' => 1 })
+    expect(PrefixCounter.results(input, prefix_list)).to eq({ '351' => 2,
+                                                              '994' => 1 })
   end
 
   it 'should just count numbers with 3 or between 7 and 12 digits' do
-    input = ['+351', '003511234', '00351123456789', '+21', '+3523', '00353123', '+3541234567890']
+    input = ['+351', '003511234', '00351123456789',
+             '+21', '+3523', '00353123', '+3541234567890']
 
     expect(PrefixCounter.results(input, prefix_list)).to eq('351' => 3)
   end
@@ -34,7 +36,7 @@ describe 'prefix_counter' do
     expect(PrefixCounter.results(input, prefix_list)).to eq('351' => 1)
   end
 
-   it 'accepts spaces between numbers' do
+  it 'accepts spaces between numbers' do
     input = ['+351', '+351 123456789']
 
     expect(PrefixCounter.results(input, prefix_list)).to eq('351' => 2)
